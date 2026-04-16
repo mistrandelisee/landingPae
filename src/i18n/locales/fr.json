@@ -1,0 +1,140 @@
+{
+  "brand": {
+    "name": "Smallpay"
+  },
+  "meta": {
+    "titleSuffix": "Paiements professionnels"
+  },
+  "a11y": {
+    "menu": "Menu",
+    "apiDocsMenu": "Documentation API",
+    "facebook": "Facebook",
+    "twitter": "X (Twitter)",
+    "linkedin": "LinkedIn",
+    "instagram": "Instagram"
+  },
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "services": "Services",
+    "apiDocs": "API Docs",
+    "contact": "Contact",
+    "blog": "Blog",
+    "signIn": "Connexion",
+    "signUp": "Inscription"
+  },
+  "apiDocsMenu": {
+    "httpApi": "API HTTP",
+    "wooCommerce": "Wordpress - WooCommerce",
+    "shortcode": "Wordpress - Shortcode",
+    "edd": "Wordpress - Easy Digital Downloads",
+    "give": "Wordpress - Give (donations)",
+    "androidSdk": "SDK Android",
+    "pythonSdk": "SDK Python"
+  },
+  "lang": {
+    "switchToEn": "English",
+    "switchToFr": "Français"
+  },
+  "hero": {
+    "titleBefore": "De meilleures solutions",
+    "titleHighlight": "pour vos",
+    "titleAfter": "paiements en ligne professionnels.",
+    "sub": "Acceptez, envoyez et rapprochez vos paiements partout dans le monde avec une plateforme moderne pensée pour les équipes en croissance.",
+    "cta": "Commencer",
+    "trustNoCard": "Sans carte bancaire",
+    "trustCompanies": "Plébiscité par plus de 10 000 entreprises",
+    "altTeam": "Équipe en collaboration",
+    "revenue": "Revenus",
+    "processed": "Traités"
+  },
+  "features": {
+    "title": "Des solutions de paiement puissantes pour votre activité",
+    "learnMore": "En savoir plus",
+    "managePayments": {
+      "title": "Gérer les paiements",
+      "desc": "Centralisez cartes, virements et portefeuilles avec une visibilité en temps réel."
+    },
+    "checkout": {
+      "title": "Encaissement & retraits",
+      "desc": "Parcours d’achat fluide pour vos clients et versements rapides pour vos équipes."
+    },
+    "massPayouts": {
+      "title": "Paiements de masse",
+      "desc": "Payez des milliers de bénéficiaires en un lot avec rapprochement automatisé."
+    },
+    "invoices": {
+      "title": "Liens de paiement & factures",
+      "desc": "Partagez des liens de marque et des factures pros pour être payé plus vite."
+    },
+    "api": {
+      "title": "Intégration API",
+      "desc": "API, webhooks et SDK pensés pour les développeurs, à intégrer partout."
+    },
+    "tracking": {
+      "title": "Suivi des transactions",
+      "desc": "Filtrez, recherchez et exportez chaque mouvement avec des journaux auditables."
+    }
+  },
+  "flex": {
+    "title": "La flexibilité pour grandir avec votre entreprise",
+    "point1Title": "Évoluer sans changer de stack",
+    "point1Desc": "Commencez simple et ajoutez marchés, devises et rails de paiement au fil de votre expansion.",
+    "point2Title": "Des indicateurs qui éclairent les décisions",
+    "point2Desc": "Tableaux de bord et exports en direct pour aligner finance et opérations.",
+    "altTeam": "Équipe au travail",
+    "gaugeCaption": "Score entreprise",
+    "statUptime": "SLA de disponibilité",
+    "statIntegrations": "Intégrations",
+    "statChargeback": "Gestion des rétrofacturations",
+    "statFraud": "Détection de fraude"
+  },
+  "pricing": {
+    "title": "Des tarifs transparents et abordables",
+    "tier1Title": "Solde intermédiaire",
+    "tier1Desc": "Idéal pour un volume régulier, une trésorerie prévisible et des soldes moyens.",
+    "tier2Title": "Dépôt à 2 %",
+    "tier2Desc": "Tarification simple en pourcentage sur les dépôts — sans minimum mensuel caché.",
+    "tier3Title": "Virement bancaire 5000 $ et +",
+    "tier3Desc": "Frais réduits pour les gros virements et mouvements de type trésorerie."
+  },
+  "contact": {
+    "title": "Contactez notre support",
+    "sub": "Écrivez-nous pour toute question, nous sommes là pour vous aider.",
+    "location": "Adresse",
+    "email": "E-mail",
+    "whatsapp": "WhatsApp",
+    "addressLine1": "120 Fintech Avenue, bureau 400",
+    "addressLine2": "Yaoundé, Cameroun",
+    "addressShort": "120 Fintech Avenue, Maison Damas",
+    "phone": "+237 6 99 50 47 60",
+    "emailValue": "support@smallpaypartner.com"
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "sub": "Les questions les plus courantes.",
+    "q1": "Comment créer un compte ?",
+    "a1": "Cliquez sur Inscription, complétez la vérification et vous pourrez accepter des paiements en quelques minutes.",
+    "q2": "Quels frais s’appliquent aux transactions ?",
+    "a2": "Les frais dépendent de votre offre et de votre volume. Voir les tarifs ci-dessus ou contactez les ventes pour l’entreprise.",
+    "q3": "Mes données sont-elles sécurisées ?",
+    "a3": "Oui. Nous utilisons le chiffrement standard, une infrastructure conforme PCI et une surveillance continue."
+  },
+  "cta": {
+    "title": "Faites passer votre activité au niveau supérieur",
+    "button": "Commencer"
+  },
+  "footer": {
+    "links": "Liens",
+    "services": "Nos services",
+    "contact": "Contact",
+    "home": "Accueil",
+    "aboutUs": "À propos",
+    "contactUs": "Nous contacter",
+    "svcPayments": "Paiements",
+    "svcPayouts": "Versements",
+    "svcInvoicing": "Facturation",
+    "svcApi": "API",
+    "copyright": "© {year} {brand}. Tous droits réservés."
+  }
+}
