@@ -1,26 +1,16 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { RouterLink, useRoute } from 'vue-router'
 import { persistLocale } from '@/i18n'
 
 const { t, locale } = useI18n()
+const route = useRoute()
 
 const navOpen = ref(false)
-const apiDocsOpen = ref(false)
-
-const apiDocsItems = computed(() => [
-  { href: '#', label: t('apiDocsMenu.httpApi') },
-  { href: '#', label: t('apiDocsMenu.wooCommerce') },
-  { href: '#', label: t('apiDocsMenu.shortcode') },
-  { href: '#', label: t('apiDocsMenu.edd') },
-  { href: '#', label: t('apiDocsMenu.give') },
-  { href: '#', label: t('apiDocsMenu.androidSdk') },
-  { href: '#', label: t('apiDocsMenu.pythonSdk') },
-])
 
 function closeNav() {
   navOpen.value = false
-  apiDocsOpen.value = false
 }
 
 function setLocale(code: 'en' | 'fr') {
@@ -28,19 +18,16 @@ function setLocale(code: 'en' | 'fr') {
   closeNav()
 }
 
-function toggleApiDocsMobile() {
-  if (typeof window !== 'undefined' && window.matchMedia('(min-width: 960px)').matches) {
-    return
-  }
-  apiDocsOpen.value = !apiDocsOpen.value
-}
-
 watch(
-  locale,
-  (l) => {
+  [locale, () => route.fullPath],
+  () => {
+    const l = locale.value
     document.documentElement.lang = l
     persistLocale(l)
-    document.title = `${t('brand.name')} — ${t('meta.titleSuffix')}`
+    const titleKey = route.meta.titleKey as string | undefined
+    document.title = titleKey
+      ? `${t(titleKey)} — ${t('brand.name')}`
+      : `${t('brand.name')} — ${t('meta.titleSuffix')}`
   },
   { immediate: true },
 )
@@ -49,9 +36,9 @@ watch(
 <template>
   <header class="header">
     <div class="header__inner">
-      <a href="#" class="brand">
+      <RouterLink to="/" class="brand">
         <span class="brand__text">{{ t('brand.name') }}</span>
-      </a>
+      </RouterLink>
 
       <button
         type="button"
@@ -66,50 +53,12 @@ watch(
       </button>
 
       <nav class="nav" :class="{ 'nav--open': navOpen }" :aria-label="t('a11y.menu')">
-        <a href="#home" @click="closeNav">{{ t('nav.home') }}</a>
-        <a href="#about" @click="closeNav">{{ t('nav.about') }}</a>
-        <a href="#services" @click="closeNav">{{ t('nav.services') }}</a>
-        <div class="nav__dropdown" :class="{ 'nav__dropdown--open': apiDocsOpen }">
-          <button
-            id="api-docs-trigger"
-            type="button"
-            class="nav__dropdown-trigger"
-            :aria-expanded="apiDocsOpen"
-            aria-haspopup="true"
-            aria-controls="api-docs-menu"
-            @click="toggleApiDocsMobile"
-          >
-            <span>{{ t('nav.apiDocs') }}</span>
-            <svg class="nav__chevron" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true">
-              <path
-                d="M1 1.5L5 4.5L9 1.5"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-              />
-            </svg>
-          </button>
-          <div
-            id="api-docs-menu"
-            class="nav__dropdown-panel"
-            role="menu"
-            aria-labelledby="api-docs-trigger"
-          >
-            <a
-              v-for="(item, i) in apiDocsItems"
-              :key="locale + '-' + i"
-              role="menuitem"
-              :href="item.href"
-              class="nav__dropdown-link"
-              @click="closeNav"
-            >
-              {{ item.label }}
-            </a>
-          </div>
-        </div>
-        <a href="#contact" @click="closeNav">{{ t('nav.contact') }}</a>
-        <a href="#blog" @click="closeNav">{{ t('nav.blog') }}</a>
+        <RouterLink to="/#home" @click="closeNav">{{ t('nav.home') }}</RouterLink>
+        <RouterLink to="/#about" @click="closeNav">{{ t('nav.about') }}</RouterLink>
+        <RouterLink to="/#services" @click="closeNav">{{ t('nav.services') }}</RouterLink>
+        <RouterLink to="/api-docs" @click="closeNav">{{ t('nav.apiDocs') }}</RouterLink>
+        <RouterLink to="/#contact" @click="closeNav">{{ t('nav.contact') }}</RouterLink>
+        <RouterLink to="/#blog" @click="closeNav">{{ t('nav.blog') }}</RouterLink>
       </nav>
 
       <div class="header__actions">
@@ -205,52 +154,8 @@ watch(
   opacity: 1;
 }
 
-.nav__dropdown {
-  position: relative;
-}
-
-.nav__dropdown-trigger {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  font: inherit;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--navy);
-  opacity: 0.85;
-  transition: opacity 0.2s;
-}
-
-.nav__dropdown-trigger:hover {
+.nav a.router-link-active {
   opacity: 1;
-}
-
-.nav__chevron {
-  flex-shrink: 0;
-  opacity: 0.75;
-  transition: transform 0.2s;
-}
-
-.nav__dropdown-panel {
-  z-index: 110;
-}
-
-.nav__dropdown-link {
-  display: block;
-  padding: 0.55rem 1.15rem;
-  font-size: 0.92rem;
-  font-weight: 500;
-  color: var(--navy);
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.nav__dropdown-link:hover {
-  background: rgba(0, 11, 51, 0.06);
 }
 
 .header__actions {
@@ -350,47 +255,6 @@ watch(
     align-items: center;
   }
 
-  .nav__dropdown-panel {
-    position: absolute;
-    top: calc(100% + 14px);
-    left: 50%;
-    transform: translateX(-50%);
-    min-width: 288px;
-    padding: 0.45rem 0;
-    background: var(--white);
-    border: 1px solid rgba(0, 11, 51, 0.1);
-    border-radius: var(--radius-sm);
-    box-shadow: 0 16px 40px rgba(0, 11, 51, 0.12);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition:
-      opacity 0.15s ease,
-      visibility 0.15s ease;
-  }
-
-  .nav__dropdown-panel::before {
-    content: '';
-    position: absolute;
-    top: -6px;
-    left: 50%;
-    margin-left: -7px;
-    width: 12px;
-    height: 12px;
-    background: var(--white);
-    border-left: 1px solid rgba(0, 11, 51, 0.1);
-    border-top: 1px solid rgba(0, 11, 51, 0.1);
-    transform: rotate(45deg);
-    z-index: 1;
-  }
-
-  .nav__dropdown:hover .nav__dropdown-panel,
-  .nav__dropdown:focus-within .nav__dropdown-panel {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-
   .header__actions {
     display: flex;
   }
@@ -426,50 +290,6 @@ watch(
   .btn--navy {
     padding: 0.5rem 1rem;
     font-size: 0.85rem;
-  }
-
-  .nav__dropdown {
-    width: 100%;
-  }
-
-  .nav__dropdown-trigger {
-    justify-content: space-between;
-    width: 100%;
-    text-align: left;
-    padding: 0.35rem 0;
-  }
-
-  .nav__dropdown-panel {
-    position: static;
-    margin: 0.25rem 0 0.5rem;
-    padding: 0.35rem 0;
-    background: rgba(0, 11, 51, 0.03);
-    border-radius: var(--radius-sm);
-    border: 1px solid rgba(0, 11, 51, 0.08);
-    box-shadow: none;
-    transform: none;
-    min-width: unset;
-  }
-
-  .nav__dropdown-panel::before {
-    display: none;
-  }
-
-  .nav__dropdown:not(.nav__dropdown--open) .nav__dropdown-panel {
-    display: none;
-  }
-
-  .nav__dropdown--open .nav__dropdown-panel {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .nav__dropdown--open .nav__chevron {
-    transform: rotate(180deg);
-  }
-
-  .nav__dropdown-link {
-    white-space: normal;
   }
 }
 </style>

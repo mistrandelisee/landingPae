@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { RouterLink } from 'vue-router'
 
 const { t } = useI18n()
 </script>
@@ -8,9 +9,9 @@ const { t } = useI18n()
   <footer class="footer" id="blog">
     <div class="container footer__grid">
       <div class="footer__brand">
-        <a href="#" class="brand brand--footer">
+        <RouterLink to="/" class="brand brand--footer">
           <span class="brand__text">{{ t('brand.name') }}</span>
-        </a>
+        </RouterLink>
         <div class="social-row social-row--footer">
           <a href="#" class="social social--inv" :aria-label="t('a11y.facebook')">f</a>
           <a href="#" class="social social--inv" :aria-label="t('a11y.twitter')">X</a>
@@ -20,19 +21,19 @@ const { t } = useI18n()
       <div>
         <h4 class="footer__h">{{ t('footer.links') }}</h4>
         <ul class="footer__links">
-          <li><a href="#home">{{ t('footer.home') }}</a></li>
-          <li><a href="#about">{{ t('footer.aboutUs') }}</a></li>
-          <li><a href="#contact">{{ t('footer.contactUs') }}</a></li>
-          <li><a href="#services">{{ t('nav.apiDocs') }}</a></li>
+          <li><RouterLink to="/#home">{{ t('footer.home') }}</RouterLink></li>
+          <li><RouterLink to="/#about">{{ t('footer.aboutUs') }}</RouterLink></li>
+          <li><RouterLink to="/#contact">{{ t('footer.contactUs') }}</RouterLink></li>
+          <li><RouterLink to="/api-docs">{{ t('nav.apiDocs') }}</RouterLink></li>
         </ul>
       </div>
       <div>
         <h4 class="footer__h">{{ t('footer.services') }}</h4>
         <ul class="footer__links">
-          <li><a href="#services">{{ t('footer.svcPayments') }}</a></li>
-          <li><a href="#services">{{ t('footer.svcPayouts') }}</a></li>
-          <li><a href="#services">{{ t('footer.svcInvoicing') }}</a></li>
-          <li><a href="#services">{{ t('footer.svcApi') }}</a></li>
+          <li><RouterLink to="/#services">{{ t('footer.svcPayments') }}</RouterLink></li>
+          <li><RouterLink to="/#services">{{ t('footer.svcPayouts') }}</RouterLink></li>
+          <li><RouterLink to="/#services">{{ t('footer.svcInvoicing') }}</RouterLink></li>
+          <li><RouterLink to="/api-docs">{{ t('footer.svcApi') }}</RouterLink></li>
         </ul>
       </div>
       <div>
