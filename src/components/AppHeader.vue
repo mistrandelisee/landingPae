@@ -9,6 +9,10 @@ const route = useRoute()
 
 const navOpen = ref(false)
 
+// Variables d'environnement pour les URLs de redirection
+const signInUrl = import.meta.env.VITE_SIGNIN_URL || 'https://phoenix.small-pay.com/partner-portal/login?returnUrl=%2Fdashboard';
+const signUpUrl = import.meta.env.VITE_SIGNUP_URL || 'https://phoenix.small-pay.com/partner-portal/register';
+
 function closeNav() {
   navOpen.value = false
 }
@@ -63,13 +67,13 @@ watch(
 
       <div class="header__actions">
         <a
-          href="https://phoenix.small-pay.com/partner-portal/login?returnUrl=%2Fdashboard"
+          :href="signInUrl"
           class="link-signin"
           target="_blank"
           rel="noopener noreferrer"
         >{{ t('nav.signIn') }}</a>
         <a
-          href="https://phoenix.small-pay.com/partner-portal/register"
+          :href="signUpUrl"
           class="btn btn--navy"
           target="_blank"
           rel="noopener noreferrer"
